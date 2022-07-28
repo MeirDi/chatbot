@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace TelegramWebRunner.Controllers
+namespace TelegramWebRunner
 {
     [ApiController]
     [Route("")]
@@ -17,7 +17,7 @@ namespace TelegramWebRunner.Controllers
     {
         private static PluginExecutor pluginExecutor = new PluginExecutor(new MemoryDal(), new PluginsMenu(), new PluginsManager());
         [HttpGet]
-        public  IActionResult Get()
+        public IActionResult Get()
         {
             return Content("Hello");
         }
@@ -27,7 +27,7 @@ namespace TelegramWebRunner.Controllers
         {
             var value = Environment.GetEnvironmentVariable("TelegramKey");
             var client = new TelegramBotClient(value);
-            
+
             if (update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
             {
                 var res = pluginExecutor.Run(update.Message.Text, update.Message.Chat.Id.ToString());

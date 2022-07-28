@@ -22,5 +22,13 @@ app.UseAuthorization();
 app.MapControllers();
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "80";
-app.Run("http://0.0.0.0:" + port);
+
+if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+{
+    app.Run();
+}
+else
+{
+    app.Run("http://0.0.0.0:" + port);
+}
 
