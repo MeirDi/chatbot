@@ -12,12 +12,12 @@ using Telegram.Bot.Types;
 namespace TelegramWebRunner.Controllers
 {
     [ApiController]
-    [Route("api/bot")]
+    [Route("")]
     public class BotController : ControllerBase
     {
         private static PluginExecutor pluginExecutor = new PluginExecutor(new MemoryDal(), new PluginsMenu(), new PluginsManager());
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public  IActionResult Get()
         {
             return Content("Hello");
         }
